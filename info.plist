@@ -64,7 +64,7 @@ use_special = False
 for arg in '{query}'.split():
   if arg.isdigit():
 	password_length = int(arg)
-  elif arg == '-s':
+  elif arg == 's':
 	use_special = True
 
 url = 'http://pwd.knut.me/api/getSecurePassword?chars=%d&amp;special=%s' % (password_length, str(use_special).lower())
