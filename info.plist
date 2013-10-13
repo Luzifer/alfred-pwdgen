@@ -21,7 +21,7 @@
 	<key>createdby</key>
 	<string>Knut Ahlers</string>
 	<key>description</key>
-	<string>A access password generation service http://pwd.knut.me/ which will generate secure passwords for you</string>
+	<string>Access password generation service http://pwd.knut.me/ which will generate secure passwords for you</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
