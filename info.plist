@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>me.knut.pwd</string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>F8CBCF9B-3B33-400E-B6AD-6B8500938BA4</key>
@@ -52,6 +54,14 @@
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>pwd</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Generating password...</string>
 				<key>script</key>
@@ -66,6 +76,12 @@ for arg in '{query}'.split():
 	password_length = int(arg)
   elif arg == 's':
 	use_special = True
+
+if password_length &lt; 5 or password_length &gt; 128:
+  fb = Feedback()
+  fb.add_item(title="Password length out of bounds", subtitle="Please use a reasonable password length between 5 and 128")
+  print fb
+  sys.exit(1)
 
 command = ["./password", "get", "-l", str(password_length)]
 if use_special:
