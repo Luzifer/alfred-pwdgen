@@ -21,7 +21,7 @@
 	<key>createdby</key>
 	<string>Knut Ahlers</string>
 	<key>description</key>
-	<string>Access password generation service http://pwd.knut.me/ which will generate secure passwords for you</string>
+	<string>Generate secure passwords using Luzifer/password tool</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -55,7 +55,7 @@
 				<key>runningsubtext</key>
 				<string>Generating password...</string>
 				<key>script</key>
-				<string>import urllib, json, sys
+				<string>import subprocess, sys
 from feedback import Feedback
 
 password_length = 20
@@ -67,11 +67,13 @@ for arg in '{query}'.split():
   elif arg == 's':
 	use_special = True
 
-url = 'http://pwd.knut.me/api/getSecurePassword?chars=%d&amp;special=%s' % (password_length, str(use_special).lower())
-result = json.loads(urllib.urlopen(url).read())
+command = ["./password", "get", "-l", str(password_length)]
+if use_special:
+  command.append("-s")
+result = subprocess.check_output(command)
 
 fb = Feedback()
-fb.add_item(title=result['password'], arg=result['password'])
+fb.add_item(title=result, arg=result)
 print fb</string>
 				<key>subtext</key>
 				<string>Generates a secure password with &lt;n&gt; length</string>
@@ -106,6 +108,6 @@ print fb</string>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://blog.knut.me/</string>
+	<string>https://github.com/Luzifer/password</string>
 </dict>
 </plist>
