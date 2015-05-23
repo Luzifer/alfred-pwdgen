@@ -86,7 +86,7 @@ if password_length &lt; 5 or password_length &gt; 128:
 command = ["./password", "get", "-l", str(password_length)]
 if use_special:
   command.append("-s")
-result = subprocess.check_output(command)
+result = subprocess.check_output(command).strip()
 
 fb = Feedback()
 fb.add_item(title=result, arg=result)
